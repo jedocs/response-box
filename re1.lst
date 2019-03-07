@@ -1,0 +1,245 @@
+     1: #include        <pic.h>
+     2: #include        <string.h>
+     3: #include        <ctype.h>
+     4: #include        <math.h>
+     5: #include        <stdlib.h>
+     6: #include        <stdio.h>
+     7: 
+     8: //---------------------------------------------------------------------
+     9: // Variable declarations
+    10: //---------------------------------------------------------------------
+    11: 
+    12: struct {
+    13:         unsigned        recv1:1;
+    14:         unsigned        recv2:1;
+    15:         unsigned        n1:1;
+    16:         unsigned        n2:1;
+    17:         unsigned        n3:1;
+    18:         unsigned        n4:1;
+    19:         unsigned        :2;
+    20:         } stat;
+    21: 
+    22: union INTCHAR
+    23: {
+    24: unsigned int ui;
+    25: unsigned char ub[2];
+    26: };
+    27: 
+    28: bank1 union INTCHAR
+    29: capt_temp1,
+    30: capt_temp2;
+    31: 
+    32: bank1 unsigned int
+    33: capt_new1,
+    34: capt_new2,
+    35: capt_old1,
+    36: capt_old2;
+    37: 
+    38: // Function Prototypes-------------------------------------------------
+    39: 
+    40: interrupt void isr( void);
+    41: void Setup(void);
+    42: 
+    43: //---------------------------------------------------------------------
+    44: // isr()
+    45: //---------------------------------------------------------------------
+    46: 
+    47: interrupt void isr(void)
+    48: {
+    49: 
+    50: di ();
+    51: 
+    52: if (CCP1IF=1)                                                   
+    53:         {
+    54:         stat.recv1 = 0;
+    55: 
+    56:         capt_temp1.ub[0] = CCPR1L;
+    57:         capt_temp1.ub[1] = CCPR1H;
+    58: 
+    59:         capt_new1 = capt_temp1.ui - capt_old1;
+    60:         capt_old1 = capt_temp1.ui;
+    61: 
+    62:         if ((capt_new1 < 356) && (capt_new1 > 280))     // 312
+    63:                 {
+    64:                 if (stat.n1 && stat.n2)
+    65:                         {
+    66:                         RB0 = 1;
+    67:                         RB1 = 1;
+    68:                         }       
+    69: 
+    70:                 stat.n1 = 1;
+    71:                 stat.n2 = 1;
+    72: 
+    73:                 }
+    74:         
+    75:         if ((capt_new1 < 594) && (capt_new1 > 486)) // 540
+    76:                 {
+    77:                 if (!stat.n1 && stat.n2)
+    78:                         {
+    79:                         RB0 = 0;
+    80:                         RB1 = 1;
+    81:                         }       
+    82: 
+    83:                 stat.n1 = 0;
+    84:                 stat.n2 = 1;
+    85: 
+    86:                 }       
+    87: 
+    88:         if ((capt_new1 < 1067) && (capt_new1 > 873))// 970
+    89:                 {
+    90:                 if (stat.n1 && !stat.n2)
+    91:                         {
+    92:                         RB0 = 1;
+    93:                         RB1 = 0;
+    94:                         }       
+    95: 
+    96:                 stat.n1 = 1;
+    97:                 stat.n2 = 0;
+    98: 
+    99:                 }
+   100: 
+   101:         if ((capt_new1 < 7442) && (capt_new1 > 6089)) // 6766
+   102:                 {
+   103:                 if (!stat.n1 && !stat.n2)
+   104:                         {
+   105:                         RB0 = 0;
+   106:                         RB1 = 0;
+   107:                         }       
+   108: 
+   109:                 stat.n1 = 0;
+   110:                 stat.n2 = 0;
+   111:                 }
+   112: 
+   113:         CCP1IF = 0;
+   114:         }
+   115: 
+   116: if (CCP2IF=1)                                                   
+   117:         {
+   118:         stat.recv2 = 0;
+   119: 
+   120:         capt_temp2.ub[0] = CCPR2L;                                                      
+   121:         capt_temp2.ub[1] = CCPR2H;
+   122: 
+   123:         capt_new2 = capt_temp2.ui - capt_old2;
+   124:         capt_old2 = capt_temp2.ui;
+   125: 
+   126:      if ((capt_new2 < 356) && (capt_new2 > 291))  // 324
+   127:                 {
+   128:                 if (stat.n3 && stat.n4)
+   129:                         {
+   130:                         RB2 = 1;
+   131:                         RB3 = 1;
+   132:                         }       
+   133: 
+   134:                 stat.n3 = 1;
+   135:                 stat.n4 = 1;
+   136:                 }
+   137: 
+   138:         if ((capt_new2 < 616) && (capt_new2 > 504)) //  560
+   139:                 {
+   140:                 if (!stat.n3 && stat.n4)
+   141:                         {
+   142:                         RB2 = 0;
+   143:                         RB3 = 1;
+   144:                         }       
+   145: 
+   146:                 stat.n3 = 0;
+   147:                 stat.n4 = 1;
+   148:                 }
+   149: 
+   150:         if ((capt_new2 < 1089) && (capt_new2 > 891))// 990
+   151:                 {
+   152:                 if (stat.n3 && !stat.n4)
+   153:                         {
+   154:                         RB2 = 1;
+   155:                         RB3 = 0;
+   156:                         }       
+   157: 
+   158:                 stat.n3 = 1;
+   159:                 stat.n4 = 0;
+   160:                 }
+   161: 
+   162:         if ((capt_new2 < 7441) && (capt_new2 > 6088)) // 6765
+   163:          {
+   164:                 if (!stat.n3 && !stat.n4)
+   165:                         {
+   166:                         RB2 = 0;
+   167:                         RB3 = 0;
+   168:                         }       
+   169: 
+   170:                 stat.n3 = 0;
+   171:                 stat.n4 = 0;
+   172:                 }
+   173:         CCP2IF = 0;
+   174:         }
+   175: 
+   176: ei ();
+   177: }
+   178: 
+   179: //---------------------------------------------------------------------
+   180: //      Setup() initializes program variables and peripheral registers
+   181: //---------------------------------------------------------------------
+   182: 
+   183: void Setup(void)
+   184: {
+   185: OPTION = 0x86;                  //RBPU disabled, TMR0 int clk, prescaler 128
+   186: 
+   187: PIE1 = 0;                       //CCP1 INT disabled
+   188: PIR1 = 0;                       // clear INT flags 
+   189: 
+   190: PIE2 = 0;                       //CCP2INT disabled
+   191: PIR2 = 0;                       // clear INT flags
+   192: 
+   193: PCON = 0x03;                    //POR flags clear
+   194: 
+   195: TRISA = 0;                                      
+   196: TRISB = 0;
+   197: TRISC = 0xff;                   // PORTC all inputs
+   198: TRISD = 0;
+   199: TRISE = 0;
+   200: 
+   201: PORTA = 0;
+   202: PORTB = 0;
+   203: PORTC = 0;                      // Clear PORTC
+   204: PORTD = 0;                      // Clear PORTD
+   205: PORTE = 0;
+   206: 
+   207: TMR0 = 0;
+   208: T1CON = 0x21;                   // enable timer1 1:4 prescaler , int clock
+   209: TMR1H = 0;                                              //
+   210: TMR1L = 0;
+   211: T2CON = 0x00;                   // timer2 off
+   212:                                         
+   213: CCP1CON = 0x06;                 //capture on every 4th rising edge
+   214: CCPR1L = 0x00;
+   215: CCPR1H = 0x00;
+   216: CCP2CON = 0x06;
+   217: CCPR2L = 0x00;
+   218: CCPR2H = 0x00;
+   219: 
+   220: RCSTA = 0;                      //USART disable
+   221: ADCON0 = 0;                     //ADC disable
+   222: 
+   223: TMR2IF = 0;                                             //
+   224: TMR2IE = 0;                                             
+   225: 
+   226: INTCON = 0x00;                  // 
+   227: CCP1IE = 1;
+   228: CCP2IE = 1;
+   229: PEIE = 1;                                               // Enable interrupts.
+   230: GIE = 1;                                                        //
+   231: }
+   232: 
+   233: //---------------------------------------------------------------------
+   234: // main()
+   235: //---------------------------------------------------------------------
+   236: 
+   237: main()
+   238: {
+   239: Setup();
+   240: 
+   241: while(1)                                                                
+   242:    {
+   243:    CLRWDT ();
+   244:     }
+   245: }

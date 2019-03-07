@@ -1,0 +1,156 @@
+__Hrdata_0 21 0 BANK0
+__Lrdata_0 21 0 BANK0
+__Hidata_1 186 0 CODE
+__Lidata_1 186 0 CODE
+__Hrdata_1 AC 0 BANK1
+__Lrdata_1 AC 0 BANK1
+__Hidata_2 AC 0
+__H__ZRS_ AC 0
+__Lidata_2 AC 0
+__L__ZRS_ AC 0
+__S0 2100 0
+__S1 AC 0
+__Hrdata_2 AC 0 BANK2
+__Lrdata_2 AC 0 BANK2
+__Hidata_3 AC 0
+__Lidata_3 AC 0
+__Hrdata_3 AC 0 BANK3
+__Lrdata_3 AC 0 BANK3
+__Hnvram_1 AC 0 BANK1
+__Lnvram_1 AC 0 BANK1
+__Hpstrings 186 0 CODE
+_isr 186 0 CODE
+__Lpstrings 186 0 CODE
+__Hend_init 17F 0 CODE
+__Lend_init 17C 0 CODE
+__Bnvbit_0 21 FFFFFF19 BANK0
+__Hnvbit_0 108 FFFFFF19 BANK0
+__Lnvbit_0 108 FFFFFF19 BANK0
+__Hnvram_2 AC 0 BANK2
+__Lnvram_2 AC 0 BANK2
+__Bnvbit_1 AC FFFFFB4C BANK1
+__Hnvbit_1 560 FFFFFB4C BANK1
+__Lnvbit_1 560 FFFFFB4C BANK1
+__Hnvram_3 AC 0 BANK3
+__Lnvram_3 AC 0 BANK3
+__Bnvbit_2 AC FFFFFB4C BANK2
+__Hnvbit_2 560 FFFFFB4C BANK2
+__Lnvbit_2 560 FFFFFB4C BANK2
+_capt_old1 A4 0 BANK1
+_main 7C3 0 CODE
+_stat 20 0 BANK0
+_exit 174 0 CODE
+start 174 0 CODE
+__Bnvbit_3 AC FFFFFB4C BANK3
+__Hnvbit_3 560 FFFFFB4C BANK3
+__Lnvbit_3 560 FFFFFB4C BANK3
+__Hfloat_text1 186 0 CODE
+_capt_old2 A6 0 BANK1
+__Lfloat_text1 186 0 CODE
+__Hintsave AC 0
+__Lintsave AC 0
+__Hintsave_0 80 0 BANK0
+__Lintsave_0 7F 0 BANK0
+__Hfloat_text3 186 0 CODE
+__Lfloat_text3 186 0 CODE
+__Hstringtable 186 0 ENTRY
+__Lstringtable 186 0 ENTRY
+__Hintsave_1 100 0 BANK1
+__Lintsave_1 FF 0 BANK1
+_Setup 7CB 0 CODE
+_capt_new1 A0 0 BANK1
+clear_bank0 174 0 CODE
+_capt_new2 A2 0 BANK1
+__Hconfig 2007 0 CONFIG
+__Lconfig 2007 0 CONFIG
+__Hstrings 186 0 STRING
+__Lstrings 186 0 STRING
+__Brbit_0 20 FFFFFF20 BANK0
+__Hrbit_0 100 FFFFFF20 BANK0
+__Lrbit_0 100 FFFFFF20 BANK0
+clear_bank1 178 0 CODE
+__Brbit_1 A0 FFFFFBA0 BANK1
+__Hrbss_0 21 0 BANK0
+__Hrbit_1 500 FFFFFBA0 BANK1
+__Lrbss_0 20 0 BANK0
+__Lrbit_1 500 FFFFFBA0 BANK1
+__Hintsave_2 AC 0 BANK2
+__Lintsave_2 AC 0 BANK2
+__Brbit_2 AC FFFFFB4C BANK2
+__Hrbss_1 AC 0 BANK1
+__Hrbit_2 560 FFFFFB4C BANK2
+__Lrbss_1 A0 0 BANK1
+__Lrbit_2 560 FFFFFB4C BANK2
+clear_ram 182 0 CODE
+__Brbit_3 AC FFFFFB4C BANK3
+__Hrbss_2 AC 0 BANK2
+__Hrbit_3 560 FFFFFB4C BANK3
+__Lrbss_2 AC 0 BANK2
+__Lrbit_3 560 FFFFFB4C BANK3
+int_restore 16F 0 CODE
+__Hrbss_3 AC 0 BANK3
+__Lrbss_3 AC 0 BANK3
+intlevel0 4 0 CODE
+intlevel1 4 0 CODE
+__Hfloat_text0 186 0 CODE
+__Lfloat_text0 186 0 CODE
+__Hpowerup 4 0 CODE
+__Lpowerup 0 0 CODE
+__Hintsave_3 AC 0 BANK3
+__Lintsave_3 AC 0 BANK3
+__Hvectors 186 0 CODE
+__Lvectors 186 0 CODE
+__Hidloc 2000 0 IDLOC
+__Lidloc 2000 0 IDLOC
+int_func B 0 CODE
+__Hintret 174 0 CODE
+__Hfloat_text2 186 0 CODE
+__Lintret 16D 0 CODE
+__Lfloat_text2 186 0 CODE
+__Hstruct 23 0 BANK0
+__Lstruct 23 0 BANK0
+__Hnvram 21 0 BANK0
+__Lnvram 21 0 BANK0
+__Hclrtext 186 0 CODE
+__Heeprom_data 2100 0 EEDATA
+__Lclrtext 17F 0 CODE
+__Leeprom_data 2100 0 EEDATA
+_capt_temp1 A8 0 BANK1
+__Hcommon_ram AC 0 COMBANK
+__Lcommon_ram AC 0 COMBANK
+__Hcode AC 0
+__Lcode AC 0
+__Hfloat_text4 186 0 CODE
+__Lfloat_text4 186 0 CODE
+_capt_temp2 AA 0 BANK1
+__Htemp 21 0 BANK0
+__Ltemp 21 0 BANK0
+__Hinit 17C 0 CODE
+__Linit 174 0 CODE
+powerup 0 0 CODE
+__Htext AC 0
+__Ltext AC 0
+__Hintentry B 0 CODE
+__Lintentry 4 0 CODE
+int_entry 4 0 CODE
+__Hintcode 16D 0 CODE
+__Lintcode B 0 CODE
+__Hidata_0 186 0 CODE
+__Lidata_0 186 0 CODE
+%segments
+powerup 0 7 CODE
+intentry 8 30B CODE
+intsave_0 7F 7F BANK0
+rbit_0 100 102 BANK0
+intsave_1 FF FF BANK1
+rbit_1 500 50B BANK1
+text1 F96 FFF CODE
+text2 F86 F95 CODE
+%locals
+re1.obj
+saved_w 7F 0 BANK0
+saved_w_1 FF 0 BANK1
+saved_pclath 22 0 BANK0
+pclath A
+saved_status 21 0 BANK0
+status 3
